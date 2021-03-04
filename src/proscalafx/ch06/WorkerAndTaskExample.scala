@@ -29,12 +29,12 @@ object WorkerAndTaskExample extends JFXApp {
   private def hookupEvents(): Unit = {
     View.startButton.onAction = () => new Thread(Model.Worker).start()
     View.cancelButton.onAction = () => Model.Worker.cancel
-    View.exceptionButton.onAction = () => Model.shouldThrow.set(true)
+    View.exceptionButton.onAction = () => Model.shouldThrow = true
   }
 
 
   private object Model {
-    val shouldThrow = new AtomicBoolean(false)
+    @volatile var shouldThrow: Boolean = false
 
     // NOTE: Object worker is created by extending `Task`.
     // ScalaFX `Task` cannot be directly instantiated since it is `abstract`, so we use `object` as a shortcut.
@@ -53,7 +53,7 @@ object WorkerAndTaskExample extends JFXApp {
           } catch {
             case _: InterruptedException => return "Canceled at " + System.currentTimeMillis
           }
-          if (shouldThrow.get) {
+          if (shouldThrow) {
             throw new RuntimeException("Exception thrown at " + System.currentTimeMillis)
           }
           updateTitle("Example Task (" + i + ")")
