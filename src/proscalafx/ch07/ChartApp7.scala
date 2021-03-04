@@ -50,13 +50,13 @@ object ChartApp7 extends JFXApp {
     }
     for (i <- 2011 to 2021) {
       java.data() += XYChart.Data[String, Number](i.toString, javaValue)
-      javaValue += math.random - .5
+      javaValue += math.random() - .5
 
       c.data() += XYChart.Data[String, Number](i.toString, cValue)
-      cValue += math.random - .5
+      cValue += math.random() - .5
 
       cpp.data() += XYChart.Data[String, Number](i.toString, cppValue)
-      cppValue += math.random - .5
+      cppValue += math.random() - .5
     }
     answer.addAll(java, c, cpp)
     answer

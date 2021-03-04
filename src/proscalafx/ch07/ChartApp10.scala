@@ -71,13 +71,13 @@ object ChartApp10 extends JFXApp {
     }
     for (i <- xMin to xMax by xStep) {
       java.data() += XYChart.Data[Number, Number](i, javaValue)
-      javaValue += +scale * math.random - scale / 2
+      javaValue += +scale * math.random() - scale / 2
 
       c.data() += XYChart.Data[Number, Number](i, cValue)
-      cValue += scale * math.random - scale / 2
+      cValue += scale * math.random() - scale / 2
 
       cpp.data() += XYChart.Data[Number, Number](i, cppValue)
-      cppValue += scale * math.random - scale / 2
+      cppValue += scale * math.random() - scale / 2
     }
     answer.addAll(java, c, cpp)
     answer

@@ -35,7 +35,7 @@ object ChartApp4 extends JFXApp {
 
     val years = 2011 to 2020
     // Generate trend by creating a cumulative sum of random values
-    def generateTrend(startValue: Double) = years.map(_ => math.random - .5).scanLeft(startValue)(_ + _)
+    def generateTrend(startValue: Double) = years.map(_ => math.random() - .5).scanLeft(startValue)(_ + _)
 
     val javaTrend = generateTrend(17.56)
     val cTrend = generateTrend(17.06)

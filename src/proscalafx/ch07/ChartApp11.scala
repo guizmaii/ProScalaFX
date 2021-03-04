@@ -59,7 +59,7 @@ object ChartApp11 extends JFXApp {
     var cValue = 17.06
     var cppValue = 8.25
     val scale = 10
-    def dif: Double = scale * math.random / 4
+    def dif: Double = scale * math.random() / 4
     val answer = new ObservableBuffer[jfxsc.XYChart.Series[Number, Number]]()
     val java = new XYChart.Series[Number, Number] {
       name = "Java"
@@ -74,13 +74,13 @@ object ChartApp11 extends JFXApp {
       // NOTE: XYChart.Data declares its third parameter as a `AnyRef`. A Double returned by `math.rand`
       // is not a subclass of `AnyRef`, so we need to explicitly convert it to a `java.lang.Number` to make it work.
       java.data() += XYChart.Data[Number, Number](i, javaValue, dif.asInstanceOf[Number])
-      javaValue += +scale * math.random - scale / 2
+      javaValue += +scale * math.random() - scale / 2
 
       c.data() += XYChart.Data[Number, Number](i, cValue, dif.asInstanceOf[Number])
-      cValue += scale * math.random - scale / 2
+      cValue += scale * math.random() - scale / 2
 
       cpp.data() += XYChart.Data[Number, Number](i, cppValue, dif.asInstanceOf[Number])
-      cppValue += scale * math.random - scale / 2
+      cppValue += scale * math.random() - scale / 2
     }
     answer.addAll(java, c, cpp)
     answer
